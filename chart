@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biểu Đồ Check-in</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 90vw; /* Chiều rộng biểu đồ */
+            height: 60vh; /* Chiều cao biểu đồ */
+        }
+        canvas {
+            width: 100% !important; /* Đảm bảo canvas có kích thước đầy đủ */
+            height: 100% !important; /* Đảm bảo canvas có kích thước đầy đủ */
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="checkInChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('checkInChart').getContext('2d');
+        const checkInChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00',
+                    '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', 
+                    '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00',
+                    '23:00', '0:00'
+                ],
+                datasets: [{
+                    label: 'Lượt Check-in',
+                    data: [1, 0, 0, 0, 24, 188, 194, 313, 414, 539, 259, 274, 295, 534, 1073, 
+                           1412, 1561, 1924, 1326, 895, 262, 53, 12, 0],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Thời Gian'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Lượt Check-in'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
